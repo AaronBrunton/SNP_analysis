@@ -23,7 +23,7 @@ calculateGeneticDiversity <- function(pop) {
   Ho <- colSums(tab(pop) == 1) / n_ind
   
   # Calculate allele frequencies (p and q)
-  p <- colSums(tab(pop) == 0) / (n_ind * 2)
+  p <- colSums(tab(pop) == 0) / (n_ind * 2) # See comment's #3-5 when calculating this, dealing with NAs, heterozygotes, dominant allele in genind
   q <- 1 - p
   
   # Calculate expected heterozygosity (He)

@@ -18,7 +18,7 @@ for (i in 1:length(file_names)) {
   sampled_data <- genind_data[sample(nInd(genind_data), size = n_ind_subsample), ]
   
   # Replace NAs with 0
-  sampled_data@tab[is.na(sampled_data@tab)] <- 0
+  sampled_data@tab[is.na(sampled_data@tab)] <- 0 # Will this cause a problem in our p and q calculations?
   
   # Convert 'pop' to factor class with a new name (e.g., PopA, PopB, etc.)
   new_pop_name <- paste0("Pop", letters[i])  # This will create PopA, PopB, PopC, ...

@@ -113,7 +113,14 @@ Ho_SNPs <- ggplot(data = Ho_stat, aes(x = nSNP, y = Ho, color = Stat)) + geom_po
                                 'Observed Heterozygosity' = '#4575b4')) + 
   theme_classic() + xlab('Number of SNPS') + ylab(NULL) + facet_wrap( ~ Stat, scales = "fixed") + 
   theme(legend.position="none")
-                              
+
+Ho_SNPs_box <- ggplot(data = Ho_stat, aes(x = nSNP, y = Ho, color = Stat)) +
+  geom_boxplot(aes(group = cut_width(nSNP, 100)), outlier.alpha = 0.5, fill = '#fcfcfc') +
+  scale_color_manual(values = c('Squared Error' = '#f46d43', 'Error' = '#a50026', 
+                                'Observed Heterozygosity' = '#4575b4')) + 
+  theme_classic() + xlab('Number of SNPS') + ylab(NULL) + facet_wrap( ~ Stat, scales = "fixed") + 
+  theme(legend.position="none")
+
 
 
 # Test different SNP and individual combination
@@ -202,8 +209,16 @@ Ho_Inds <- ggplot(data = Ho_stat_ind, aes(x = nInd, y = Ho, color = Stat)) + geo
   theme_classic() + xlab('Number of Individuals') + ylab(NULL) + facet_wrap( ~ Stat, scales = "fixed") + 
   theme(legend.position="none")
 
+Ho_Inds_box <- ggplot(data = Ho_stat_ind, aes(x = nInd, y = Ho, color = Stat)) +
+  geom_boxplot(aes(group = cut_width(nInd, 5)), outlier.alpha = 0.5, fill = '#fcfcfc') +
+  scale_color_manual(values = c('Squared Error' = '#f46d43', 'Error' = '#a50026', 
+                                'Observed Heterozygosity' = '#4575b4')) + 
+  theme_classic() + xlab('Number of Individuals') + ylab(NULL) + facet_wrap( ~ Stat, scales = "fixed") + 
+  theme(legend.position="none")
+
 
 ## Make a multi panel of the nSNP and nIND plots
 
 plot_grid(Ho_SNPs, Ho_Inds, nrow = 2)
+plot_grid(Ho_SNPs_box, Ho_Inds_box, nrow = 2)
                           
